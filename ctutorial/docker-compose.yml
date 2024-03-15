@@ -1,0 +1,19 @@
+version: '3'
+services:
+  ctutorial:
+    container_name: "ctutorial"
+    build:
+      dockerfile: Dockerfile
+      context: .
+      args:
+        APP_ENV: Local
+    ports:
+      - "8406:8080"
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+    entrypoint:
+      - bash
+      - ./run.bash
+    external_links:
+      - postgres:postgres
+    network_mode: bridge
